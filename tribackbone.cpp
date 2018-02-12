@@ -19,6 +19,8 @@ double TriBackbone::getY(double x)
 
     if (x < 0)
         cur_x = x * -1;
+    else
+        cur_x = x;
 
     if (cur_x <= this->x1) {
         out = cur_x * this->E;
@@ -32,7 +34,7 @@ double TriBackbone::getY(double x)
 
     if (x < 0)
         out = out * -1;
-    return this->x_ult;
+    return out;
 }
 
 bool TriBackbone::isInRange(double x)

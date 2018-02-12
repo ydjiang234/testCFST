@@ -24,7 +24,9 @@ OPS_Export void *OPS_testCFST()
         opserr << "testCFST unaxial material - Written by Yadong Jiang\n";
         numtestCFST = 1;
         TriBackbone *tbb = new TriBackbone(1.0,1.0,1.1,0.1,-0.1);
-        opserr << tbb->getY(1.1);
+        opserr << tbb->getY(2.0)<<"\n";
+        opserr << tbb->getY(-18)<<"\n";
+        opserr << tbb->getY(-5)<<"\n";
 	}
 
 	// Pointer to a uniaxial material that will be returned
