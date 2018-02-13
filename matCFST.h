@@ -16,8 +16,8 @@ public:
     double E_ini, strain, stress;
     double E_next, strain_next, stress_next;
     TriBackbone BB;
-    unLoadPath1 LP1();
-    unLoadPath2 LP2();
+    unLoadPath1 LP1;
+    unLoadPath2 LP2;
     
 private:
     void initial();
