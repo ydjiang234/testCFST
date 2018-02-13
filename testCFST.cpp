@@ -6,13 +6,13 @@
 #include <float.h>
 #include "tribackbone.h"
 
-//#ifdef _USRDLL
+#ifdef _USRDLL
 #define OPS_Export extern "C" _declspec(dllexport)
-//#elif _MACOSX
-//#define OPS_Export extern "C" __attribute__((visibility("default")))
-//#else
-//#define OPS_Export extern "C"
-//#endif
+#elif _MACOSX
+#define OPS_Export extern "C" __attribute__((visibility("default")))
+#else
+#define OPS_Export extern "C"
+#endif
 
 
 static int numtestCFST = 0;

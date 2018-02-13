@@ -1,80 +1,74 @@
 #include "tribackbone.h"
+#include "generalPath.h"
 #include <float.h>
+#include <iostream>
+#include <vector>
 
-TriBackbone::TriBackbone(double E, double f1, double f2, double b1, double b2)
+TriBackbone::TriBackbone(std::vector<double> xdata, std::vector<double> ydata) : generalPath(xdata, ydata)
 {
-    this->E = E;
-    this->f1 = f1;
-    this->f2 = f2;
-    this->b1 = b1;
-    this->b2 = b2;
     this->initial();
 }
 
+TriBackbone::TriBackbone() : generalPath(){};
+
 TriBackbone::~TriBackbone() {}
 
-double TriBackbone::getY(double x)
+unLoadPath1 TriBackbone::unload(double x, double y, double curE, double curRev)
 {
-    double out, cur_x;
+    double Rev, tempx1;
+    std::vector<double> tempxdata, tempydata;
+    unsigned int tempDirection;
+    if (this->isLinear(x) == false)
+    {
+        if (x > 0) {
+            Rev = -1 * curRev;
+            tempDirection = 1;
+        } else {
+            Rev = curRev;
+            tempDirection = 0;
+        }
+        
+        tempx1 = x - (y - Rev) / curE;
+    }
+    
+    if (x > 0) {
+            tempxdata = {-x, tempx1, x};
+            tempydata = {-y, Rev, y};
+        } else {
+            tempxdata = {x, tempx1, -x};
+            tempydata = {y, Rev, -y};
+        }
+    
+    return unLoadPath1(tempxdata, tempydata, tempDirection);
+}
 
-    if (x < 0)
-        cur_x = x * -1;
-    else
-        cur_x = x;
-
-    if (cur_x <= this->x1) {
-        out = cur_x * this->E;
-    } else if (cur_x <= this->x2) {
-        out = this->y1 + (cur_x - this->x1) * this->b1 * this->E;
-    } else if (cur_x <= this->x_ult) {
-        out = this->y2 + (cur_x - this->x2) * this->b2 * this->E;
+double TriBackbone::curE(double x)
+{
+    double out;
+    if (this->isInRange(x)) {
+        if (x <= this->xdata[1]) {
+            out = this->E2;
+        } else if (x <= this->xdata[2]) {
+            out = this->E1;
+        } else if (x <= this->xdata[3]) {
+            out = this->E;
+        } else if (x <= this->xdata[4]) {
+            out = this->E1;
+        } else if (x <= this->xdata[5]) {
+            out = this->E2;
+        }
     } else {
         out = DBL_EPSILON;
     }
-
-    if (x < 0)
-        out = out * -1;
     return out;
-}
-
-bool TriBackbone::isInRange(double x)
-{
-    return this->inRange(x, -1.0 * this->x_ult, this->x_ult);
-}
-
-bool TriBackbone::isLinear(double x)
-{
-    return this->inRange(x, -1.0 * this->x1, this->x1);
 }
 
 void TriBackbone::initial()
 {
-    double tempx1, tempx2;
-    double tempy1, tempy2;
-    double x_ult;
-    tempx1 = this->f1 / this->E;
-    tempy1 = this->f1;
-    tempx2 = tempx1 + (this->f2 - this->f1) / (this->b1 * this->E);
-    tempy2 = this->f2;
-    if (this->b2 < 0)
-    {
-        x_ult = tempx2 - this->f2 / (this->b2 * this->E);
-    } else {
-        x_ult = 1E5;
-    }
-    this->x_ult = x_ult;
-    this->x1 = tempx1;
-    this->x2 = tempx2;
-    this->y1 = tempy1;
-    this->y2 = tempy2;
+    this->linearRange.push_back(this->xdata[2]) ;
+    this->linearRange.push_back(this->xdata[3]) ;
+    this->E = (this->ydata[3] - this->ydata[2]) / (this->xdata[3] - this->xdata[2]);
+    this->E1 = (this->ydata[4] - this->ydata[3]) / (this->xdata[4] - this->xdata[3]);
+    this->E2 = (this->ydata[5] - this->ydata[4]) / (this->xdata[5] - this->xdata[4]);
 }
 
-bool TriBackbone::inRange(double x, double low, double high)
-{
-    if (x < low)
-        return false;
-    else if (x > high)
-        return false;
-    else
-        return true;
-}

@@ -1,25 +1,30 @@
 #ifndef TRIBACKBONE_H
 #define TRIBACKBONE_H
 
+#include <iostream>
+#include <vector>
+#include "generalPath.h"
+#include "unLoadPath1.h"
 
-class TriBackbone
+
+class TriBackbone : public generalPath
 {
 public:
-    TriBackbone(double E, double f1, double f2, double b1, double b2);
+    TriBackbone(std::vector<double> xdata, std::vector<double> ydata);
+    TriBackbone();
     ~TriBackbone();
-    double getY(double x);
-    bool isLinear(double x);
-    bool isInRange(double x);
+    
+    unLoadPath1 unload(double x, double y, double curE, double curRev);
+    double curE(double x);
+    
+    double E;
+    double E1, E2;
 
 private:
     //to get the points on the backbone
     void initial();
-    bool inRange(double x, double low, double high);
-
-
-    double E, f1, f2, b1, b2;
-    double x1, x2, x_ult;
-    double y1, y2;
+    
+    
 
 };
 
