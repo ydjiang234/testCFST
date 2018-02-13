@@ -15,7 +15,7 @@ public:
     ~TriBackbone();
     
     unLoadPath1 unload(double x, double y, double curE, double curRev);
-    double curE(double x);
+    double getE(double x);
     
     double E;
     double E1, E2;

@@ -13,9 +13,17 @@ public:
     bool isLinear(double x);
     bool isInRange(double x);
     double getY(double x);
+    virtual bool isLeave(double nextX);
+    virtual double getE(double x);
+    double curE();
+    void back2Path(double x);
     
     std::vector<double> xdata, ydata;
     std::vector<double> linearRange;
+    
+    double curX, curY;
+    bool isOnPath;
+    
     
     
 private:

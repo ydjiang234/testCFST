@@ -42,7 +42,7 @@ unLoadPath1 TriBackbone::unload(double x, double y, double curE, double curRev)
     return unLoadPath1(tempxdata, tempydata, tempDirection);
 }
 
-double TriBackbone::curE(double x)
+double TriBackbone::getE(double x)
 {
     double out;
     if (this->isInRange(x)) {

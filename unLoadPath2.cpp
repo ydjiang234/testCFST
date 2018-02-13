@@ -36,7 +36,7 @@ unLoadPath2 unLoadPath2::unload(double x, double y, double curE, double curRev)
     return unLoadPath2(tempxdata, tempydata);
 }
 
-double unLoadPath2::curE(double x)
+double unLoadPath2::getE(double x)
 {
     double out;
     if (this->isInRange(x)) {

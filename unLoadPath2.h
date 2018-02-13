@@ -15,7 +15,7 @@ public:
     ~unLoadPath2();
     
     unLoadPath2 unload(double x, double y, double curE, double curRev);
-    double curE(double x);
+    double getE(double x);
     
     double E, E1, E2;
     

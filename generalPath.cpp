@@ -7,11 +7,19 @@ generalPath::generalPath(std::vector<double> xdata, std::vector<double> ydata)
 {
     this->xdata = xdata;
     this->ydata = ydata;
+    this->isOnPath = false;
 }
 
 generalPath::generalPath() {};
 
 generalPath::~generalPath() {};
+
+void generalPath::back2Path(double x)
+{
+    this->curX = x;
+    this->curY = this->getY(x);
+    this->isOnPath = true;
+}
 
 double generalPath::getY(double x)
 {
@@ -30,6 +38,21 @@ double generalPath::getY(double x)
     }
     
     return out;
+}
+
+bool generalPath::isLeave(double nextX)
+{
+    return false;
+}
+
+double generalPath::getE(double x)
+{
+    return 0;
+}
+
+double generalPath::curE()
+{
+    return this->getE(this->curX);
 }
 
 double generalPath::interp(double x, double x1, double x2, double y1, double y2)
