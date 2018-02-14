@@ -3,11 +3,12 @@
 
 
 #include <UniaxialMaterial.h>
+#include "matCFST.h"
 
 class testCFST : public UniaxialMaterial
 {
 public:
-    testCFST(int tag, double E, double fyt, double fyn, double bt, double bn);
+    testCFST(int tag, double E, double f1, double f2, double b1, double b2, double revRatio);
     testCFST();
     ~testCFST();
     UniaxialMaterial *getCopy(void);
@@ -33,15 +34,7 @@ public:
 protected:
 
 private:
-    double E, bt, bn; //fyn should be negative
-    double fyt_ini, fyn_ini;//initial fyt and fyn
-    double strain, stress, tangent;
-    double strain_next, stress_next, tangent_next;
-    double ep, fyt, fyn; //ep, fyt, fyn
-    double ep_next, fyt_next, fyn_next;
-
-    int nextStress(double input_strain);
-    int gotoNext(void);
+    matCFST curMat;
 
 };
 
