@@ -29,7 +29,19 @@ int main()
     cout<<mat.stress_next<<endl;
     cout<<mat.E_next<<endl;
     mat.next();
-    mat.nextStress(1.4);
+    mat.nextStress(-1.0);
+    cout<<mat.stress_next<<endl;
+    cout<<mat.E_next<<endl;
+    mat.next();
+    mat.nextStress(1.3);
+    cout<<mat.stress_next<<endl;
+    cout<<mat.E_next<<endl;
+    mat.next();
+    mat.nextStress(1.2);
+    cout<<mat.stress_next<<endl;
+    cout<<mat.E_next<<endl;
+    mat.next();
+    mat.nextStress(1.3);
     cout<<mat.stress_next<<endl;
     cout<<mat.E_next<<endl;
 
