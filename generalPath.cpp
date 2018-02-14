@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <float.h>
+#include <algorithm>
 
 generalPath::generalPath(std::vector<double> xdata, std::vector<double> ydata)
 {
@@ -28,7 +29,7 @@ double generalPath::getY(double x)
     if (this->isInRange(x))
     {
         std::vector<double>::iterator low;
-        low=std::lower_bound (this->xdata.begin(), this->xdata.end(), x);
+        low=std::lower_bound(this->xdata.begin(), this->xdata.end(), x);
         curId = low - this->xdata.begin() - 1;
         if (curId < 0)
             curId = 0;

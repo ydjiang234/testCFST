@@ -21,14 +21,14 @@ unLoadPath2 unLoadPath1::unload(double x, double y, double curE, double curRev)
     double Rev, tempx1;
     std::vector<double> tempxdata, tempydata;
     if (this->isLinear(x) == false) {
-        if (this->direction==0) {
+        if (this->direction==1) {
             Rev = -1 * curRev;
         } else {
             Rev =  curRev;
         }
         tempx1 = x - (y - Rev) / curE;
         
-        if (this->direction==0) {
+        if (this->direction==1) {
             tempxdata = {this->xdata[0], tempx1, x, this->xdata.back()};
             tempydata = {this->ydata[0], Rev, y, this->ydata.back()};
         } else {
@@ -39,14 +39,33 @@ unLoadPath2 unLoadPath1::unload(double x, double y, double curE, double curRev)
     return unLoadPath2(tempxdata, tempydata);
 }
 
+bool unLoadPath1::isLeave(double nextX)
+{
+    bool out;
+    if (this->isInRange(nextX)) {
+        if (this->isLinear(this->curX)) {
+            out = false;
+        } else {
+            if (this->direction * (nextX - this->curX) >= 0) {
+                out = false;
+            } else {
+                out = true;
+            }
+        }
+    } else {
+        out = false;
+    }
+    return out;
+}
+
 double unLoadPath1::getE(double x)
 {
     double out;
     if (this->isInRange(x)) {
         if (x <= this->xdata[1]) {
-            if (this->direction==0) {out = this->E;} else {out = this->E1;}
+            if (this->direction==1) {out = this->E;} else {out = this->E1;}
         } else if (x <= this->xdata[2]) {
-            if (this->direction==0) {out = this->E1;} else {out = this->E;}
+            if (this->direction==1) {out = this->E1;} else {out = this->E;}
         }
     } else {
         out = DBL_EPSILON;
@@ -56,7 +75,7 @@ double unLoadPath1::getE(double x)
 
 void unLoadPath1::initial()
 {
-    if (this->direction==0) {
+    if (this->direction==1) {
         this->linearRange.push_back(this->xdata[0]);
         this->linearRange.push_back(this->xdata[1]);
         this->E = (this->ydata[1] - this->ydata[0]) / (this->xdata[1] - this->xdata[0]);

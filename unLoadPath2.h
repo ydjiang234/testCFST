@@ -15,9 +15,13 @@ public:
     ~unLoadPath2();
     
     unLoadPath2 unload(double x, double y, double curE, double curRev);
+    bool isLeave(double nextX);
+
     double getE(double x);
+
     
     double E, E1, E2;
+    unsigned int direction;//1 - low to high, 2 - high to low
     
 private:
     virtual void initial();

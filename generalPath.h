@@ -10,6 +10,7 @@ public:
     generalPath(std::vector<double> xdata, std::vector<double> ydata);
     generalPath();
     ~generalPath();
+
     bool isLinear(double x);
     bool isInRange(double x);
     double getY(double x);

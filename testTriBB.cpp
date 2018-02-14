@@ -16,16 +16,23 @@ int main()
     generalPath *gp = new generalPath(xdata, ydata);
     */
 
-    double E, f1, f2, b1, b2;
+    double E, f1, f2, b1, b2, revRatio;
     E = 1;
     f1 =1;
     f2 = 1.1;
     b1 =0.1;
     b2 =-0.1;
+    revRatio = 0.1;
     
-    matCFST mat(E, f1, f2, b1, b2);
-    
-    cout<<mat.BB.xdata[2]<<endl;
+    matCFST mat(E, f1, f2, b1, b2, revRatio);
+    mat.nextStress(1.5);
+    cout<<mat.stress_next<<endl;
+    cout<<mat.E_next<<endl;
+    mat.next();
+    mat.nextStress(1.4);
+    cout<<mat.stress_next<<endl;
+    cout<<mat.E_next<<endl;
+
     cout<<"OK"<<endl;
 
     return 0;
