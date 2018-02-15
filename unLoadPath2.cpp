@@ -59,11 +59,11 @@ double unLoadPath2::getE(double x)
 {
     double out;
     if (this->isInRange(x)) {
-        if (x <= this->xdata[1]) {
+        if (x < this->xdata[1]) {
             out = this->E1;
-        } else if (x <= this->xdata[2]) {
+        } else if (x < this->xdata[2]) {
             out = this->E;
-        } else if (x <= this->xdata[3]) {
+        } else if (x < this->xdata[3]) {
             out = this->E2;
         }
     } else {

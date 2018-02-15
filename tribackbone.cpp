@@ -17,17 +17,16 @@ unLoadPath1 TriBackbone::unload(double x, double y, double curE, double curRev)
 {
     double Rev, tempx1;
     std::vector<double> tempxdata, tempydata;
-    unsigned int tempDirection;
+    int tempDirection;
     if (this->isLinear(x) == false)
     {
         if (x > 0) {
             Rev = -1 * curRev;
-            tempDirection = 1;
+            tempDirection = -1;
         } else {
             Rev = curRev;
-            tempDirection = 0;
+            tempDirection = 1;
         }
-        
         tempx1 = x - (y - Rev) / curE;
     }
     

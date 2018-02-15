@@ -96,45 +96,46 @@ void matCFST::nextStress(double strain)
 
 void matCFST::next()
 {
+    //std::cout<<this->nextCondition<<std::endl;
     if (this->nextCondition == 10) {
         //10 - stay on BB
         this->BB.back2Path(this->strain_next);
         this->LP1.isOnPath = false;
         this->LP2.isOnPath = false;
-    } else if (this->nextCondition = 11) {
+    } else if (this->nextCondition == 11) {
         //11 - go to new LP1
         this->LP1 = this->LP1_next;
         this->LP1.back2Path(this->strain_next);
         this->BB.isOnPath = false;
         this->LP2.isOnPath = false;
-    } else if (this->nextCondition = 20) {
+    } else if (this->nextCondition == 20) {
         //20 - stay on LP1
         this->LP1.back2Path(this->strain_next);
         this->BB.isOnPath = false;
         this->LP2.isOnPath = false;
-    } else if (this->nextCondition = 21) {
+    } else if (this->nextCondition == 21) {
         //21 - go to new LP2
         this->LP2 = this->LP2_next;
         this->LP2.back2Path(this->strain_next);
         this->BB.isOnPath = false;
         this->LP1.isOnPath = false;
-    } else if (this->nextCondition = 22) {
+    } else if (this->nextCondition == 22) {
         //22 - back to BB
         this->BB.back2Path(this->strain_next);
         this->LP1.isOnPath = false;
         this->LP2.isOnPath = false;
-    } else if (this->nextCondition = 30) {
+    } else if (this->nextCondition == 30) {
         //30 - stay on LP2
         this->LP2.back2Path(this->strain_next);
         this->BB.isOnPath = false;
-        this->LP2.isOnPath = false;
-    } else if (this->nextCondition = 31) {
+        this->LP1.isOnPath = false;
+    } else if (this->nextCondition == 31) {
         //31 - go to new LP2
         this->LP2 = this->LP2_next;
         this->LP2.back2Path(this->strain_next);
         this->BB.isOnPath = false;
         this->LP1.isOnPath = false;
-    } else if (this->nextCondition = 32) {
+    } else if (this->nextCondition == 32) {
         //32 - back to BB
         this->BB.back2Path(this->strain_next);
         this->LP1.isOnPath = false;
@@ -146,8 +147,8 @@ void matCFST::next()
 void matCFST::revertToLast()
 {
     this->E_next = this->E;
-    this->strain_next = strain;
-    this->stress_next = stress;
+    this->strain_next = this->strain;
+    this->stress_next = this->stress;
     this->nextCondition = 0;
 }
 
@@ -160,7 +161,9 @@ void matCFST::reset()
     this->stress = 0;
     this->stress_next = 0;
     this->nextCondition = 0;
-
+    this->LP1 = unLoadPath1();
+    this->LP2 = unLoadPath2();
+    this->BB = TriBackbone();
     this->initial();
 }
 

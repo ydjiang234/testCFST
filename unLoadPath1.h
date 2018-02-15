@@ -11,7 +11,7 @@ class unLoadPath1 : public generalPath
 public:
     
     //Three Points
-    unLoadPath1(std::vector<double> xdata, std::vector<double> ydata, unsigned int direction);
+    unLoadPath1(std::vector<double> xdata, std::vector<double> ydata, int direction);
     unLoadPath1();
     ~unLoadPath1();
     
@@ -24,7 +24,7 @@ public:
     
 private:
     virtual void initial();
-    unsigned int direction;//1 - low to high; -1 - high to low
+    int direction;//1 - low to high; -1 - high to low
     
 };
 

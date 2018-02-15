@@ -6,7 +6,7 @@
 #include <float.h>
 
 
-unLoadPath1::unLoadPath1(std::vector<double> xdata, std::vector<double> ydata, unsigned int direction) : generalPath(xdata, ydata)
+unLoadPath1::unLoadPath1(std::vector<double> xdata, std::vector<double> ydata, int direction) : generalPath(xdata, ydata)
 {
     this->direction = direction;
     this->initial();
@@ -36,6 +36,8 @@ unLoadPath2 unLoadPath1::unload(double x, double y, double curE, double curRev)
             tempydata = {this->ydata[0], y, Rev, this->ydata.back()};
         }
     }
+    //std::cout<<tempxdata[0]<<' '<<tempxdata[1]<<' '<<tempxdata[2]<<' '<<tempxdata[3]<<std::endl;
+    //std::cout<<tempydata[0]<<' '<<tempydata[1]<<' '<<tempydata[2]<<' '<<tempydata[3]<<std::endl;
     return unLoadPath2(tempxdata, tempydata);
 }
 
@@ -46,10 +48,11 @@ bool unLoadPath1::isLeave(double nextX)
         if (this->isLinear(this->curX)) {
             out = false;
         } else {
-            if (this->direction * (nextX - this->curX) >= 0) {
+            if (this->direction * (nextX - this->curX) > 0) {
                 out = false;
             } else {
                 out = true;
+                //std::cout<<this->direction<<std::endl;
             }
         }
     } else {

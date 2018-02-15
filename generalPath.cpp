@@ -68,7 +68,7 @@ bool generalPath::isLinear(double x)
     double low, up;
     low = this->linearRange[0];
     up = this->linearRange[1];
-    if ((x <= up) && (x>=low))
+    if (this->inRange(x, low, up))
         return true;
     else
         return false;
@@ -81,9 +81,9 @@ bool generalPath::isInRange(double x)
 
 bool generalPath::inRange(double x, double low, double high)
 {
-    if (x < low)
+    if (x < (low + DBL_EPSILON))
         return false;
-    else if (x > high)
+    else if (x > (high - DBL_EPSILON))
         return false;
     else
         return true;

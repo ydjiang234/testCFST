@@ -21,7 +21,7 @@ OPS_Export void *OPS_testCFST()
 {
     // print out some KUDO's
     if (numtestCFST == 0) {
-        opserr << "testCFST unaxial material - Written by Yadong Jiang\n";
+        opserr << "testCFST uniaxial material - Written by Yadong Jiang\n";
         numtestCFST = 1;
     }
 
