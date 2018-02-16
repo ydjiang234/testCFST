@@ -92,11 +92,13 @@ void matCFST::nextStress(double strain)
     this->strain_next = strain;
     this->stress_next = stress;
     this->E_next = tangent;
+    std::cout<<this->nextCondition<<std::endl;
+    std::cout<<this->strain_next<<std::endl;
 }
 
 void matCFST::next()
 {
-    //std::cout<<this->nextCondition<<std::endl;
+
     if (this->nextCondition == 10) {
         //10 - stay on BB
         this->BB.back2Path(this->strain_next);

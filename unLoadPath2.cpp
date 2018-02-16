@@ -50,7 +50,7 @@ bool unLoadPath2::isLeave(double nextX)
             }
         }
     } else {
-        out = false;
+        out = true;
     }
     return out;
 }
