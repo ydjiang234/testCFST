@@ -3,7 +3,6 @@
 #include "matCFST.h"
 #include <iostream>
 #include <vector>
-#include <QPointF>
 
 matCFSTana::matCFSTana(double E, double f1, double f2, double b1, double b2, double revRatio) : matCFST(E, f1, f2, b1, b2, revRatio) {}
 
@@ -28,7 +27,6 @@ void matCFSTana::analysisOneStep(double target, double interval)
             this->next();
             this->Xresults.push_back(this->strain);
             this->Yresults.push_back(this->stress);
-            this->points.push_back(QPointF(this->strain, this->stress));
         }
     } else {
         while (this->strain > target) {
@@ -36,7 +34,6 @@ void matCFSTana::analysisOneStep(double target, double interval)
             this->next();
             this->Xresults.push_back(this->strain);
             this->Yresults.push_back(this->stress);
-            this->points.push_back(QPointF(this->strain, this->stress));
         }
     }
 }
@@ -45,6 +42,5 @@ void matCFSTana::reset()
 {
     this->Xresults.clear();
     this->Yresults.clear();
-    this->points.clear();
     this->loadingProtocol.clear();
 }

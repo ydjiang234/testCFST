@@ -4,7 +4,6 @@
 #include "matCFST.h"
 #include <iostream>
 #include <vector>
-#include <QPointF>
 
 
 class matCFSTana : public matCFST
@@ -18,7 +17,6 @@ public:
 
     std::vector<double> Xresults, Yresults;
     std::vector<double> loadingProtocol;
-    std::vector<QPointF> points;
 
 private:
     void analysisOneStep(double target, double interval);
