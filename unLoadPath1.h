@@ -16,7 +16,7 @@ public:
     ~unLoadPath1();
     
     unLoadPath2 unload(double x, double y, double curE, double curRev);
-    bool isLeave(double nextX);
+    unsigned int isLeave(double nextX);
 
     double getE(double x);
     

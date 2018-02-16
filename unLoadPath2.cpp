@@ -36,21 +36,21 @@ unLoadPath2 unLoadPath2::unload(double x, double y, double curE, double curRev)
     return unLoadPath2(tempxdata, tempydata);
 }
 
-bool unLoadPath2::isLeave(double nextX)
+unsigned int unLoadPath2::isLeave(double nextX)
 {
-    bool out;
+    unsigned int out;
     if (this->isInRange(nextX)) {
         if (this->isLinear(this->curX)) {
-            return false;
+            return 0;
         } else {
             if (this->curE() == this->E1) {
-                if ((nextX - this->curX) < 0) {out = false;} else {out = true;}
+                if ((nextX - this->curX) < 0) {out = 0;} else {out = 22;}
             } else if (this->curE() == this->E2) {
-                if ((nextX - this->curX) > 0) {out = false;} else {out = true;}
+                if ((nextX - this->curX) > 0) {out = 0;} else {out = 22;}
             }
         }
     } else {
-        out = true;
+        out = 3;
     }
     return out;
 }

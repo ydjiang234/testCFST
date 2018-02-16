@@ -14,17 +14,17 @@ public:
     bool isLinear(double x);
     bool isInRange(double x);
     double getY(double x);
-    virtual bool isLeave(double nextX);
+    virtual unsigned int isLeave(double nextX);// 0 - stay, 1 - new LP1, 21 - new LP2 from LP1, 22 - new LP2 from LP2 3 - back to BB
     virtual double getE(double x);
     double curE();
     void back2Path(double x);
-    
+
     std::vector<double> xdata, ydata;
     std::vector<double> linearRange;
     
     double curX, curY;
     bool isOnPath;
-    
+
     
     
 private:

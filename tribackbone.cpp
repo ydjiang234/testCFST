@@ -41,22 +41,23 @@ unLoadPath1 TriBackbone::unload(double x, double y, double curE, double curRev)
     return unLoadPath1(tempxdata, tempydata, tempDirection);
 }
 
-bool TriBackbone::isLeave(double nextX)
+unsigned int TriBackbone::isLeave(double nextX)
 {
-    bool out;
+    unsigned int out;
     if (this->isInRange(nextX)) {
         if (this->isLinear(this->curX)) {
-            out = false;
+            out = 0;
         } else {
             if (this->curX * (nextX - this->curX) < 0) {
-                out = true;
+                out = 1;
             } else {
-                out = false;
+                out = 0;
             }
         }
     } else {
-        out = false;
+        out = 0;
     }
+
     return out;
 }
 

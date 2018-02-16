@@ -30,9 +30,11 @@ private:
     void initial();
     void getDataFromPath();
     unsigned int nextCondition;
-    TriBackbone BB;//10 - stay on BB, 11 - go to LP1
-    unLoadPath1 LP1, LP1_next; // 20 stay on LP1, 21 - go to LP2, 22 - back to BB
-    unLoadPath2 LP2, LP2_next; // 30 stay on LP2, 31 - go to new LP2, 32 - back to BB
+    generalPath* getCurLP();
+
+    TriBackbone BB;
+    unLoadPath1 LP1, LP1_next;
+    unLoadPath2 LP2, LP2_next;
 };
 
 #endif

@@ -41,9 +41,9 @@ double generalPath::getY(double x)
     return out;
 }
 
-bool generalPath::isLeave(double nextX)
+unsigned int generalPath::isLeave(double nextX)
 {
-    return false;
+    return 0;
 }
 
 double generalPath::getE(double x)

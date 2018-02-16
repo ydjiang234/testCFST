@@ -41,22 +41,22 @@ unLoadPath2 unLoadPath1::unload(double x, double y, double curE, double curRev)
     return unLoadPath2(tempxdata, tempydata);
 }
 
-bool unLoadPath1::isLeave(double nextX)
+unsigned int unLoadPath1::isLeave(double nextX)
 {
-    bool out;
+    unsigned int out;
     if (this->isInRange(nextX)) {
         if (this->isLinear(this->curX)) {
-            out = false;
+            out = 0;
         } else {
             if (this->direction * (nextX - this->curX) > 0) {
-                out = false;
+                out = 0;
             } else {
-                out = true;
+                out = 21;
                 //std::cout<<this->direction<<std::endl;
             }
         }
     } else {
-        out = true;
+        out = 3;
     }
     return out;
 }
