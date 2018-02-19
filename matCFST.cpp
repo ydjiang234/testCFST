@@ -59,7 +59,15 @@ void matCFST::nextStress(double strain)
     this->stress_next = nextLP->getY(strain);
     this->E_next = nextLP->getE(strain);
     //std::cout<<this->nextCondition<<std::endl;
+    //std::cout<<(curLP==nextLP)<<std::endl;
+    //std::cout<<curLP->xdata.size()<<std::endl;
+    //std::cout<<nextLP->isInRange(strain)<<std::endl;
+    //std::cout<<nextLP->getE(strain)<<std::endl;
+
     //std::cout<<this->strain_next<<std::endl;
+    //std::cout<<this->stress_next<<std::endl;
+    //std::cout<<this->E_next<<std::endl;
+    //std::cout<<std::endl;
 }
 
 void matCFST::next()
@@ -146,6 +154,7 @@ void matCFST::initial()
     this->BB =TriBackbone(xdata, ydata);
     this->BB.back2Path(this->strain);
     this->getDataFromPath();
+
 }
 
 void matCFST::getDataFromPath()

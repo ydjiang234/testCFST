@@ -20,7 +20,6 @@ public:
     double getE(double x);
 
     
-    double E, E1, E2;
     unsigned int direction;//1 - low to high, 2 - high to low
     
 private:

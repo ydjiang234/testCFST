@@ -20,8 +20,6 @@ public:
 
     double getE(double x);
     
-    double E, E1;
-    
 private:
     virtual void initial();
     int direction;//1 - low to high; -1 - high to low

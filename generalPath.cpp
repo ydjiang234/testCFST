@@ -81,9 +81,9 @@ bool generalPath::isInRange(double x)
 
 bool generalPath::inRange(double x, double low, double high)
 {
-    if (x < (low + DBL_EPSILON))
+    if (x < low)
         return false;
-    else if (x > (high - DBL_EPSILON))
+    else if (x > high)
         return false;
     else
         return true;

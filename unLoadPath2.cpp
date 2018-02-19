@@ -41,7 +41,7 @@ unsigned int unLoadPath2::isLeave(double nextX)
     unsigned int out;
     if (this->isInRange(nextX)) {
         if (this->isLinear(this->curX)) {
-            return 0;
+            out = 0;
         } else {
             if (this->curE() == this->E1) {
                 if ((nextX - this->curX) < 0) {out = 0;} else {out = 22;}
@@ -63,7 +63,7 @@ double unLoadPath2::getE(double x)
             out = this->E1;
         } else if (x < this->xdata[2]) {
             out = this->E;
-        } else if (x < this->xdata[3]) {
+        } else {
             out = this->E2;
         }
     } else {

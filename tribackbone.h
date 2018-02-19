@@ -18,8 +18,6 @@ public:
     double getE(double x);
     unsigned int isLeave(double nextX);
     
-    double E;
-    double E1, E2;
 
 private:
     //to get the points on the backbone

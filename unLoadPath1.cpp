@@ -52,7 +52,6 @@ unsigned int unLoadPath1::isLeave(double nextX)
                 out = 0;
             } else {
                 out = 21;
-                //std::cout<<this->direction<<std::endl;
             }
         }
     } else {

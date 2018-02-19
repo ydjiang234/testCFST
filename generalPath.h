@@ -24,6 +24,7 @@ public:
     
     double curX, curY;
     bool isOnPath;
+    double E, E1, E2;
 
     
     
